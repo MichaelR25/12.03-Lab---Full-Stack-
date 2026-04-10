@@ -1,23 +1,41 @@
 extends layout
-
 block content
+  script(src='/javascripts/editButton.js' defer)
+
   h1= title
   p Welcome to #{title}
   ol
   each val in todos
-    li
-      span= val.task + ' - '
+    li(id='task' + val.id)
+      span(class='task-name')= val.task
+
       if val.completed > 0
-        span Completed
+        span(class='status-text complete') Completed
+
+        form(method='POST' action='/not-completed')
+          input(type='hidden', name='id', value=val.id)
+          button(type='submit') Set Not Complete
       else
-        span Not Completed
-      form(method='POST' action='/delete')
+        span(class='status-text not-complete') Not Completed
+
+        form(class='complete-form' method='POST' action='/completed')
+          input(type='hidden', name='id', value=val.id)
+          button(type='submit') Set Complete
+
+        button(class='edit-button') Edit
+      
+        form(class='edit-form' method='POST' action='/edit' style='display: none')
+          input(type='hidden', name='id', value=val.id)
+          button(type='submit') Confirm Edit
+
+      form(class='delete-form' method='POST' action='/delete')
         input(type='hidden', name='id', value=val.id)
         button(type='submit') Delete
 
-  hr
   h2 Add a new task
   form(method='POST' action='/create')
     label(for='task') Task:
     input(type='text', name='task', id='task', required)
     button(type='submit') Create Task
+
+

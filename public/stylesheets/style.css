@@ -6,3 +6,41 @@ body {
 a {
   color: #00B7FF;
 }
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  max-width: 650px;
+  border-bottom: 2px solid black;
+}
+
+li span {
+  width: 150px;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.5;
+}
+
+button {
+  margin-left: 10px;
+  background-color: transparent;
+  border: 2px solid gray;
+  border-radius: 5px;
+}
+
+.complete {
+  color: green;
+}
+
+.not-complete {
+  color: red;
+}
+
+button:hover { 
+  cursor:pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
